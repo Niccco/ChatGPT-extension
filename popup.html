@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upcoming Concerts</title>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script>
+    <script src="popup.js"></script>
+    <script>
+        //Check if the API key is present in the chrome storage
+        chrome.storage.local.get(['apikey'], (result) => {
+            if(!result.apikey) {
+                alert("Please add the API key in the options page");
+            } else {
+                //Render the ChatGPT component
+                ReactDOM.render(<ChatGPT apikey={result.apikey} />, document.getElementById("root"));
+            }
+        });
+    </script>
+  </body>
+</html>
